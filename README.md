@@ -27,3 +27,10 @@ https://puthpiseth.github.io/pokedex/
 
 ## Application Layout
 ![](pokedexMarquette.png)
+
+## Contributing
+Puthpiseth TUN GitHub: https://github.com/Puthpiseth
+Hassan Elgallouchi GitHub: https://github.com/HassanElgallouchi
+
+## License
+This code is licensed under MIT.
