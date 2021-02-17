@@ -158,7 +158,7 @@ arrowTop.addEventListener("click", () =>{
     // console.log(arrowTop)
     // Si on clique arrowTop, ça affiche next pokemon    
     let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
-    
+
     pokeId = Number(pokeId)
     pokeId +=1;
 
