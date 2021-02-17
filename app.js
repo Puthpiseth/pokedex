@@ -196,8 +196,7 @@ arrowMiddle.addEventListener("click", () =>{
 })
 
 
-// Assigner des valeurs 
-// let konomiCode = [up, up, down, down left, right, left, right, B, A]
+
 
 
 
