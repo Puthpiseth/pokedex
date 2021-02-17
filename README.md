@@ -12,6 +12,7 @@ This is a team project of Simplon.co BootCamp. It was developed with Web-API (ht
   
 
 ## Project Link
+https://puthpiseth.github.io/pokedex/
 
 ## Technologies
 - HTML
