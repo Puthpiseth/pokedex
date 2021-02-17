@@ -19,7 +19,7 @@ let leftMainScreen = document.querySelector(".main-screen");
 fetch("https://pokeapi.co/api/v2/pokemon/" + idPoke)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        // console.log(data);
         // console.log(data.name);
 
         let dataTypes = data.types;
@@ -75,7 +75,7 @@ function pokeListDisplay(url) {
 };
 pokeListDisplay("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20");
 
-// Afficher pokemon sur l'eran droit
+// Afficher pokemon sur l'ecran droit
 function pokeDom (data) {
     let pokeListItems = document.querySelector(".right-container__screen");
         let output = "";
@@ -128,5 +128,77 @@ function pokeLeftScreen () {
     })
 
 }
+
+
+// Konami code
+
+//Step 1
+// DOM tous les éléments dans HTML
+
+let btn = document.querySelectorAll(".buttons__button");
+let arrowTop = document.querySelector(".d-pad__cell.top");
+console.log(arrowTop)
+let arrowBottom = document.querySelector(".d-pad__cell.bottom");
+let arrowLeft = document.querySelector(".d-pad__cell.left");
+let arrowRight = document.querySelector(".d-pad__cell.right");
+let arrowMiddle = document.querySelector(".d-pad__cell.middle");
+
+
+// Button A et B
+btn[0].addEventListener("click", () =>{
+console.log(btn[0])
+})
+
+btn[1].addEventListener("click", () =>{
+    console.log(btn[1])
+})
+
+// Arrow Top
+arrowTop.addEventListener("click", () =>{
+    // console.log(arrowTop)
+    // Si on clique arrowTop, ça affiche next pokemon    
+    let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
+    
+    pokeId = Number(pokeId)
+    pokeId +=1;
+
+    // console.log(pokeId)
+    getInfoPokemon(pokeId)
+    
+    })
+
+// Arrow Bottom
+arrowBottom.addEventListener("click", () =>{
+    // console.log(arrowBottom)
+    let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
+    
+    pokeId = Number(pokeId)
+    pokeId -=1;
+
+    console.log(pokeId)
+
+    getInfoPokemon(pokeId)
+})
+
+// Arrow Left
+arrowLeft.addEventListener("click", () =>{
+    // console.log(arrowLeft)
+})
+
+// Arrow Right
+arrowRight.addEventListener("click", () =>{
+    // console.log(arrowRight)
+})
+
+// Arrow Middle
+arrowMiddle.addEventListener("click", () =>{
+    // console.log(arrowMiddle)
+})
+
+
+// Assigner des valeurs 
+// let konomiCode = [up, up, down, down left, right, left, right, B, A]
+
+
 
 
