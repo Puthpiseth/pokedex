@@ -59,15 +59,13 @@ fetch("https://pokeapi.co/api/v2/pokemon/" + idPoke)
 };
 
 // getInfoPokemon();
-function pokeListDisplay(url) {
-
-    
+function pokeListDisplay(url) {    
 
     // fetch 
     fetch(url)
     .then(response => response.json())
     .then(data => {
-        // console.log(data)            
+        console.log(data)            
         
         pokeDom(data.results);
         });    
@@ -78,15 +76,14 @@ pokeListDisplay("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20");
 // Afficher pokemon sur l'ecran droit
 function pokeDom (data) {
     let pokeListItems = document.querySelector(".right-container__screen");
-        let output = "";
-            data.forEach((pokemon)=>{
-                let idPoke = pokemon.url.split("pokemon/")[1].split("/")[0];
-                
-            output += `<div class="list-item">${idPoke}. ${nameCapitalized(pokemon.name)}</div>`;
-            })
-            pokeListItems.innerHTML = output;
+    let output = "";
+        data.forEach((pokemon)=>{
+        let idPoke = pokemon.url.split("pokemon/")[1].split("/")[0];    
+        output += `<div class="list-item">${idPoke}. ${nameCapitalized(pokemon.name)}</div>`;
+        })
+        pokeListItems.innerHTML = output;
 
-            pokeLeftScreen();
+        pokeLeftScreen();
 }
 
 // Prev et next Button
@@ -137,35 +134,43 @@ function pokeLeftScreen () {
 
 let btn = document.querySelectorAll(".buttons__button");
 let arrowTop = document.querySelector(".d-pad__cell.top");
-console.log(arrowTop)
 let arrowBottom = document.querySelector(".d-pad__cell.bottom");
 let arrowLeft = document.querySelector(".d-pad__cell.left");
 let arrowRight = document.querySelector(".d-pad__cell.right");
 let arrowMiddle = document.querySelector(".d-pad__cell.middle");
+let next = 0;
 
 
-// Button A et B
+// Button B
 btn[0].addEventListener("click", () =>{
-console.log(btn[0])
+// console.log(btn[0])
+// Dès qu'on clique le button B, l'écran s'éteint
+let leftMainScreen = document.querySelector(".main-screen");
+leftMainScreen.classList.add("hide");
+
 })
 
+//Button A
 btn[1].addEventListener("click", () =>{
-    console.log(btn[1])
+    // console.log(btn[1])
+    // Dès qu'on clique le button A, l'écran s'allume.
+let leftMainScreen = document.querySelector(".main-screen");
+leftMainScreen.classList.remove("hide");
 })
 
 // Arrow Top
 arrowTop.addEventListener("click", () =>{
     // console.log(arrowTop)
     // Si on clique arrowTop, ça affiche next pokemon    
-    let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
-
-    pokeId = Number(pokeId)
-    pokeId +=1;
+let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
+pokeId = Number(pokeId)
+pokeId +=1;
 
     // console.log(pokeId)
-    getInfoPokemon(pokeId)
+    // Applle la fonction getInfoPokemon pour récupérer les infos de l'API déclarer dès le début
+getInfoPokemon(pokeId)
     
-    })
+})
 
 // Arrow Bottom
 arrowBottom.addEventListener("click", () =>{
@@ -183,17 +188,23 @@ arrowBottom.addEventListener("click", () =>{
 // Arrow Left
 arrowLeft.addEventListener("click", () =>{
     // console.log(arrowLeft)
+    // Si on clique la arrowLeft, ça affiche 20 à la fois. Il s'arrête quand il arrive à 0
+    next -= 20
+    if(next<=0){
+        next = 0
+    }
+    pokeListDisplay(`https://pokeapi.co/api/v2/pokemon?offset=${next}&limit=20`);
 })
 
 // Arrow Right
 arrowRight.addEventListener("click", () =>{
     // console.log(arrowRight)
+    // Si on clique la arrowRight, ça affiche 20 à la fois.
+    next += 20
+    pokeListDisplay(`https://pokeapi.co/api/v2/pokemon?offset=${next}&limit=20`);
 })
 
-// Arrow Middle
-arrowMiddle.addEventListener("click", () =>{
-    // console.log(arrowMiddle)
-})
+
 
 
 
