@@ -223,16 +223,28 @@ window.addEventListener("keydown", (e) =>{
         let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
         pokeId = Number(pokeId)
         pokeId +=1;
-    getInfoPokemon(pokeId)
+        getInfoPokemon(pokeId)
     }
     
     if(e.key === "ArrowDown") {
         let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
         pokeId = Number(pokeId)
         pokeId -=1;
-    getInfoPokemon(pokeId)
+        getInfoPokemon(pokeId)
     }
 
+    if(e.key === "ArrowRight") {
+        next +=20
+        pokeListDisplay(`https://pokeapi.co/api/v2/pokemon?offset=${next}&limit=20`);
+    }
+
+    if(e.key === "ArrowLeft") {
+        next -= 20
+        if(next<=0){
+        next = 0
+        }
+        pokeListDisplay(`https://pokeapi.co/api/v2/pokemon?offset=${next}&limit=20`);
+    }
     
 })
 
