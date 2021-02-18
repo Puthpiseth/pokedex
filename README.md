@@ -24,6 +24,7 @@ https://puthpiseth.github.io/pokedex/
 - Click each of Pokemon on the right screen to view a detailed information on the right screen
 - Click up, down, left and right buttons to view each all of pokemons on the left and the right screen
 - Click button-B to turn off the left screen and button-A to turn on the left screen
+- Users can use their keyboards a or A, b or B as well as ArrowUp, ArrowDown, ArrowLeft, ArrowRight to command both screens 
 
 ## Application Layout
 ![](pokedexMarquette.png)
