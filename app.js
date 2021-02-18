@@ -1,7 +1,73 @@
 // Convertir la permière lettre en majuscule
 let nameCapitalized = (str) => str[0].toUpperCase() + str.substr(1); 
 
+// Ecran droit
+function pokeListDisplay(url) {    
 
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+        console.log(data)            
+        
+        pokeDom(data.results);
+        });    
+    
+};
+pokeListDisplay("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20");
+
+// Afficher pokemon sur l'ecran droit
+function pokeDom (data) {
+    let pokeListItems = document.querySelector(".right-container__screen");
+    let output = "";
+        data.forEach((pokemon)=>{
+        let idPoke = pokemon.url.split("pokemon/")[1].split("/")[0];    
+        output += `<div class="list-item">${idPoke}. ${nameCapitalized(pokemon.name)}</div>`;
+        })
+        pokeListItems.innerHTML = output;
+
+        pokeLeftScreen();
+}
+
+// Prev et next Button
+function button () {
+    let leftButton = document.querySelector(".left-button");
+    let rightButton = document.querySelector(".right-button")
+    let next = 0;
+
+    rightButton.addEventListener("click", () =>{
+        next += 20
+        // console.log(rightButton);
+        pokeListDisplay(`https://pokeapi.co/api/v2/pokemon?offset=${next}&limit=20`)
+    })
+    leftButton.addEventListener("click", ()=> {
+        // console.log(leftButton);
+        next -=20
+        if(next<=0){
+            next = 0
+        }
+        pokeListDisplay(`https://pokeapi.co/api/v2/pokemon?offset=${next}&limit=20`)
+        
+    })
+
+}
+button();
+
+function pokeLeftScreen () {
+    let listItems = document.querySelectorAll(".list-item")
+    // console.log(listItems)
+
+    listItems.forEach((element) =>{
+        // console.log(element)
+        let pokeElement = element.textContent.split(".")[0]
+        element.addEventListener("click", ()=>{
+           
+            getInfoPokemon(pokeElement);
+        })
+    })
+
+}
+
+// Ecran gauche
 function getInfoPokemon(idPoke) {
 
 let pokeName = document.querySelector(".poke-name");
@@ -57,72 +123,7 @@ fetch("https://pokeapi.co/api/v2/pokemon/" + idPoke)
 };
 
 // getInfoPokemon();
-function pokeListDisplay(url) {    
 
-    // fetch 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-        console.log(data)            
-        
-        pokeDom(data.results);
-        });    
-    
-};
-pokeListDisplay("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20");
-
-// Afficher pokemon sur l'ecran droit
-function pokeDom (data) {
-    let pokeListItems = document.querySelector(".right-container__screen");
-    let output = "";
-        data.forEach((pokemon)=>{
-        let idPoke = pokemon.url.split("pokemon/")[1].split("/")[0];    
-        output += `<div class="list-item">${idPoke}. ${nameCapitalized(pokemon.name)}</div>`;
-        })
-        pokeListItems.innerHTML = output;
-
-        pokeLeftScreen();
-}
-
-// Prev et next Button
-
-function button () {
-    let leftButton = document.querySelector(".left-button");
-    let rightButton = document.querySelector(".right-button")
-    let next = 0;
-
-    rightButton.addEventListener("click", () =>{
-        next += 20
-        // console.log(rightButton);
-        pokeListDisplay(`https://pokeapi.co/api/v2/pokemon?offset=${next}&limit=20`)
-    })
-    leftButton.addEventListener("click", ()=> {
-        // console.log(leftButton);
-        next -=20
-        if(next<=0){
-            next = 0
-        }
-        pokeListDisplay(`https://pokeapi.co/api/v2/pokemon?offset=${next}&limit=20`)
-        
-    })
-
-}
-button();
-
-function pokeLeftScreen () {
-    let listItems = document.querySelectorAll(".list-item")
-    // console.log(listItems)
-
-    listItems.forEach((element) =>{
-        // console.log(element)
-        let pokeElement = element.textContent.split(".")[0]
-        element.addEventListener("click", ()=>{
-           
-            getInfoPokemon(pokeElement);
-        })
-    })
-
-}
 
 // Konami code
 
