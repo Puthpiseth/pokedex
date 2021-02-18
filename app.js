@@ -20,7 +20,6 @@ fetch("https://pokeapi.co/api/v2/pokemon/" + idPoke)
     .then(response => response.json())
     .then(data => {
         // console.log(data);
-        // console.log(data.name);
 
         let dataTypes = data.types;
         let dataType1 = dataTypes[0];
@@ -28,7 +27,6 @@ fetch("https://pokeapi.co/api/v2/pokemon/" + idPoke)
 
         // Affiche le premier type de Pokemon et converti la première lettre en majuscule
         pokeType1.textContent = nameCapitalized(dataType1.type.name);
-        // pokeType2.textContent = dataType2.type.name;
 
         if (dataType2){
             pokeType2.classList.remove("hide")
@@ -51,11 +49,11 @@ fetch("https://pokeapi.co/api/v2/pokemon/" + idPoke)
         pokeWeight.textContent = data.weight;
         pokeHeight.textContent = data.height;
 
-        // Afficher les images de Pokemon4 front et back
+        // Afficher les images de Pokemon front et back
         pokeFrontImg.src = data.sprites.front_default; 
         pokeBackImg.src = data.sprites.back_default; 
+        console.log("1")
     });
-
 };
 
 // getInfoPokemon();
@@ -63,8 +61,8 @@ function pokeListDisplay(url) {
 
     // fetch 
     fetch(url)
-    .then(response => response.json())
-    .then(data => {
+        .then(response => response.json())
+        .then(data => {
         console.log(data)            
         
         pokeDom(data.results);
@@ -126,12 +124,9 @@ function pokeLeftScreen () {
 
 }
 
-
 // Konami code
 
-//Step 1
 // DOM tous les éléments dans HTML
-
 let btn = document.querySelectorAll(".buttons__button");
 let arrowTop = document.querySelector(".d-pad__cell.top");
 let arrowBottom = document.querySelector(".d-pad__cell.bottom");
@@ -140,34 +135,33 @@ let arrowRight = document.querySelector(".d-pad__cell.right");
 let arrowMiddle = document.querySelector(".d-pad__cell.middle");
 let next = 0;
 
-
 // Button B
 btn[0].addEventListener("click", () =>{
 // console.log(btn[0])
 // Dès qu'on clique le button B, l'écran s'éteint
-let leftMainScreen = document.querySelector(".main-screen");
-leftMainScreen.classList.add("hide");
-
+    let leftMainScreen = document.querySelector(".main-screen");
+    leftMainScreen.classList.add("hide");
 })
 
 //Button A
 btn[1].addEventListener("click", () =>{
     // console.log(btn[1])
     // Dès qu'on clique le button A, l'écran s'allume.
-let leftMainScreen = document.querySelector(".main-screen");
-leftMainScreen.classList.remove("hide");
+    let leftMainScreen = document.querySelector(".main-screen");
+    leftMainScreen.classList.remove("hide");
+
 })
 
 // Arrow Top
 arrowTop.addEventListener("click", () =>{
     // console.log(arrowTop)
     // Si on clique arrowTop, ça affiche next pokemon    
-let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
-pokeId = Number(pokeId)
-pokeId +=1;
+    let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
+    pokeId = Number(pokeId)
+    pokeId +=1;
 
     // console.log(pokeId)
-    // Applle la fonction getInfoPokemon pour récupérer les infos de l'API déclarer dès le début
+    // Applle la fonction getInfoPokemon pour récupérer les infos de l'API déclaré dès le début
 getInfoPokemon(pokeId)
     
 })
@@ -179,8 +173,7 @@ arrowBottom.addEventListener("click", () =>{
     
     pokeId = Number(pokeId)
     pokeId -=1;
-
-    console.log(pokeId)
+    // console.log(pokeId)
 
     getInfoPokemon(pokeId)
 })
@@ -205,7 +198,43 @@ arrowRight.addEventListener("click", () =>{
 })
 
 
+// Claviers A ou a et B ou b
 
+window.addEventListener("keydown", (e)=> {
+    console.log(e.key)
+    if(e.key === "a" || e.key === "A") {
+        let leftMainScreen = document.querySelector(".main-screen");
+        leftMainScreen.classList.add("hide");
+    }
+
+    if(e.key === "b" || e.key === "B") {
+        let leftMainScreen = document.querySelector(".main-screen");
+        leftMainScreen.classList.remove("hide");
+    }
+})
+// Appelle cette fonction pour que l'écran gauche reste allumer par défaut
+getInfoPokemon(1)
+
+// Clavier ArrowUp, ArrowDown, ArrowLeft, ArrowRight
+window.addEventListener("keydown", (e) =>{
+     // Si on clique la flèche ArrowUp
+    if(e.key === "ArrowUp") {
+        // console.log(e.key)
+        let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
+        pokeId = Number(pokeId)
+        pokeId +=1;
+    getInfoPokemon(pokeId)
+    }
+    
+    if(e.key === "ArrowDown") {
+        let pokeId = document.querySelector(".poke-id").textContent.split("#")[1];
+        pokeId = Number(pokeId)
+        pokeId -=1;
+    getInfoPokemon(pokeId)
+    }
+
+    
+})
 
 
 
