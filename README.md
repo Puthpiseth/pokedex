@@ -6,8 +6,6 @@ This is an individual project of Simplon.co BootCamp. It was developed with Web-
     <img src="https://img.shields.io/github/issues/Puthpiseth/pokedex" />
     <img src="https://img.shields.io/github/last-commit/Puthpiseth/pokedex" />
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-</p>
-<p align="center">
     <img src="https://img.shields.io/badge/Javascript-red" />
   
 
