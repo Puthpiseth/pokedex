@@ -1,5 +1,5 @@
 # Pokedex
-This is a project of Simplon.co BootCamp. It was developed with Web-API (https://pokeapi.co). You will discover thousands of Pokemon here. 
+This is an individual project of Simplon.co BootCamp. It was developed with Web-API (https://pokeapi.co). You will discover thousands of Pokemon here. 
 
 <p align="center">
     <img src="https://img.shields.io/github/repo-size/Puthpiseth/pokedex" />
